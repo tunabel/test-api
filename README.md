@@ -104,3 +104,5 @@ provide a fully capable microservice architecture with resiliency and scalabilit
   service can later be accessed directly by the mobile platform for user to manage basic operations
   that requires identification
 
+Due to time constraints, I'm unable to fix the validator library which is not working as expected
+thus affecting the code quality.
