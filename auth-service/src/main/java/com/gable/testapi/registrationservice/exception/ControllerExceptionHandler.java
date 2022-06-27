@@ -17,7 +17,7 @@ public class ControllerExceptionHandler {
 
   @ExceptionHandler(value = MethodArgumentNotValidException.class)
   @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-  public Map<String, String> invalidRequestException(MethodArgumentNotValidException ex) {
+  public Map<String, String> invalidRequestExceptionHandler(MethodArgumentNotValidException ex) {
       Map<String, String> errors = new HashMap<>();
       ex.getBindingResult().getAllErrors().forEach(error -> {
         String fieldName = ((FieldError) error).getField();
@@ -25,6 +25,12 @@ public class ControllerExceptionHandler {
         errors.put(fieldName, errorMessage);
       });
       return errors;
+  }
+
+  @ExceptionHandler(value = ServerInternalException.class)
+  @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+  public Map<String, String> kafkaExceptionHandler(ServerInternalException ex) {
+    return Map.of("error", ex.getMessage());
   }
 
 }

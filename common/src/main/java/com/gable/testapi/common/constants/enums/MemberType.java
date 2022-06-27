@@ -1,4 +1,4 @@
-package com.gable.testapi.registrationservice.constant;
+package com.gable.testapi.common.constants.enums;
 
 public enum MemberType {
 

@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 @Getter
 @Setter
@@ -18,12 +19,12 @@ public class RegistrationRequestDto {
   private String email;
 
   @NotBlank
-  @Min(8)
+  @Length(min = 8)
   private String password;
 
   @NotNull
   @Min(15000)
   @JsonProperty("based_salary")
-  private double salary;
+  private Double salary;
 
 }

@@ -1,4 +1,4 @@
-package com.gable.testapi.registrationservice.config;
+package com.gable.testapi.common.config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +15,11 @@ public class KafkaTopicConfig {
   @Value(value = "${kafka.bootstrapAddress}")
   private String bootstrapAddress;
 
-  @Value(value = "${message.topic.name}")
-  private String topicName;
+  @Value(value = "${kafka.topic.request}")
+  private String requestTopic;
+
+  @Value(value = "${kafka.topic.response}")
+  private String responseTopic;
 
   @Bean
   public KafkaAdmin kafkaAdmin() {
@@ -26,8 +29,13 @@ public class KafkaTopicConfig {
   }
 
   @Bean
-  public NewTopic topic1() {
-    return new NewTopic(topicName, 1, (short) 1);
+  public NewTopic requestTopic() {
+    return new NewTopic(requestTopic, 1, (short) 1);
+  }
+
+  @Bean
+  public NewTopic responseTopic() {
+    return new NewTopic(responseTopic, 1, (short) 1);
   }
 
 }
